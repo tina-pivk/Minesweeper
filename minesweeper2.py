@@ -80,11 +80,11 @@ class Minesweeper:
                 vrstica_gumbov.append(gumb)
             self.gumbi.append(vrstica_gumbov)
         prikaz_plosce.grid(row=1, column=0, columnspan=2)
-
+        
 
     def odkrij(self, vrsta, stolp):
         stanje = self.plosca.odkrij_polje(vrsta, stolp)
-
+        
         if stanje == model2.MEJNA:
             sos_bombe = self.plosca.polja[vrsta][stolp].sosednje_bombe
             self.gumbi[vrsta][stolp].config(text='{}'.format(sos_bombe), state='disabled', relief='groove', disabledforeground=BARVE[sos_bombe])
@@ -109,7 +109,6 @@ class Minesweeper:
         self.stevec_potez.config(text=str(self.plosca.poteza))
         
 
-
     def oznaci(self, vrsta, stolp):
         self.plosca.oznaci_bombo(vrsta, stolp)
         if self.plosca.polja[vrsta][stolp].oznacena == True:
@@ -124,7 +123,6 @@ class Minesweeper:
         if (len(self.plosca.odkriti) + self.plosca.st_bomb) == (self.plosca.visina * self.plosca.sirina):
             self.zacni_znova.config(text='ZMAGA!')
             self.konec_igre_3()
-        
 
     def konec_igre_2(self):
         if self.plosca.st_oznacenih == self.plosca.st_bomb:
@@ -135,8 +133,7 @@ class Minesweeper:
             if stevilo == self.plosca.st_bomb:
                 self.zacni_znova.config(text='ZMAGA!')
                 self.konec_igre_3()
-        
-
+       
     def konec_igre_3(self):
         for vrstica in range(self.plosca.visina):
                 for stolpec in range(self.plosca.sirina):
@@ -147,8 +144,8 @@ class Minesweeper:
                             self.gumbi[vrstica][stolpec].config(text='x', state='disabled', disabledforeground='red')
                     elif self.plosca.polja[vrstica][stolpec] not in self.plosca.odkriti:
                         self.gumbi[vrstica][stolpec].config(state='disabled', relief='flat')
-
-
+                        
+                        
    
 okno = tk.Tk()
 okno.title('Minesweeper')
