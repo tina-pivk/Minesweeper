@@ -27,9 +27,13 @@ def po_zelji():
         nova_igra(vrstice, stolpci, bombe)
         okno2.destroy()
 
-    v = tk.Entry(okno2).grid(row=1, column=2)
-    s = tk.Entry(okno2).grid(row=2, column=2)
-    b = tk.Entry(okno2).grid(row=3, column=2)
+    v = tk.Entry(okno2)
+    s = tk.Entry(okno2)
+    b = tk.Entry(okno2)
+    
+    v.grid(row=1, column=2)
+    s.grid(row=2, column=2)
+    b.grid(row=3, column=2)
      
     v_l = tk.Label(okno2, text='vrstice').grid(row=1, column=1)
     s_l = tk.Label(okno2, text='stolpci').grid(row=2, column=1)
