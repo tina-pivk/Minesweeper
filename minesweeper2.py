@@ -6,36 +6,25 @@ BARVE = ['0', 'blue2', 'green2', 'red4', 'purple1', 'cyan3', 'DarkOrange1', 'sta
 def meni():
     meni_vrstica = tk.Menu(okno)
     meni_seznam = tk.Menu(okno, tearoff=0)
-    meni_seznam.add_command(label='lahko', command=lambda: nastavi_zahtevnost(8, 8, 10))
-    meni_seznam.add_command(label='srednje', command=lambda: nastavi_zahtevnost(16, 16, 40))
-    meni_seznam.add_command(label='težko', command=lambda: nastavi_zahtevnost(16, 31, 99))
+    meni_seznam.add_command(label='lahko', command=lambda: nova_igra(8, 8, 10))
+    meni_seznam.add_command(label='srednje', command=lambda: nova_igra(16, 16, 40))
+    meni_seznam.add_command(label='težko', command=lambda: nova_igra(16, 31, 99))
     meni_seznam.add_command(label='po želji', command=lambda: po_zelji())
     meni_vrstica.add_cascade(label="zahtevnost", menu=meni_seznam)
     okno.config(menu=meni_vrstica)
 
-def nastavi_zahtevnost(visina, sirina, st_bomb):
+def nova_igra(visina=8, sirina=8, st_bomb=10):
     for x in okno.winfo_children():
         if type(x) != tk.Menu:
             x.destroy()
-    moj_stevec = Minesweeper(okno, visina, sirina, st_bomb)
-
-def nova_igra():
-    global moj_stevec
-    visina = moj_stevec.visina
-    sirina = moj_stevec.sirina
-    st_bomb = moj_stevec.st_bomb
-    
-    for x in okno.winfo_children():
-        if type(x) != tk.Menu:
-            x.destroy()
-    moj_stevec = Minesweeper(okno, visina, sirina, st_bomb)
+    Minesweeper(okno, visina, sirina, st_bomb)
 
 def po_zelji():
     okno2 = tk.Tk()
     okno2.title('Zahtevnost')
 
     def ok(vrstice, stolpci, bombe):
-        nastavi_zahtevnost(vrstice, stolpci, bombe)
+        nova_igra(vrstice, stolpci, bombe)
         okno2.destroy()
 
     v = tk.Entry(okno2).grid(row=1, column=2)
@@ -160,5 +149,5 @@ class Minesweeper:
 okno = tk.Tk()
 okno.title('Minesweeper')
 meni()
-moj_stevec = Minesweeper(okno)
+Minesweeper(okno)
 okno.mainloop()
